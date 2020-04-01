@@ -1,0 +1,19 @@
+import random
+import math
+i = 5
+ficar = True
+while ficar == True:
+    continuar = input("Deseja apostar ou sair? ")
+    if continuar == "apostar":
+        ficar == True
+    elif continuar == "sair":
+        ficar = False
+        print("Obrigada por jogar")
+    elif i==0: 
+        ficar = False
+        print("Sinto muito, vc está sem fichas")
+    else: 
+        print("Responda 'apostar' ou 'sair'")
+        ficar == True
+    print("Você está na fase 'Come Out'")
+    
