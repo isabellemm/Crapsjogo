@@ -81,10 +81,42 @@ while ficar == True:
                     dinheiro += quantoaposta*3
                     print("Parabéns, você ganhou em triplo!")
                     ficar == True
+        
+        elif tipoaposta == "Any Craps":
+            quantoaposta3 = int(input("Quanto deseja apostar? "))
+            if quantoaposta3 <= 0 or quantoaposta3 > dinheiro:
+                print("Aposta inválida. Da próxima vez digite um valor maior que 0 e que você tenha dinheiro o suficiente para apostar")
+                ficar == True
+            else:
+                dado7 = random.randint(1,6)
+                dado8 = random.randint(1,6)
+                soma4 = dado7 + dado8
+                if soma4 == 2 or soma4 == 12 or soma4 == 3:
+                    dinheiro += quantoaposta3*7
+                    print("Parabéns! Você ganhou sete vezes a sua aposta!")
+                    ficar == True
+                else:
+                    dinheiro -= quantoaposta3
+                    print("Sinto muito, você perdeu")
+                    ficar == True
 
-
-
-
+        elif tipoaposta == "Twelve":
+            quantoaposta4 = int(input("Quanto deseja apostar? "))
+            if quantoaposta4 <= 0 or quantoaposta4 > dinheiro:
+                print("Aposta inválida. Da próxima vez digite um valor maior que 0 e que você tenha dinheiro o suficiente para apostar")
+                ficar == True
+            else:
+                dado9 = random.randint(1,6)
+                dado10 = random.randint(1,6)
+                soma5 = dado9 + dado10
+                if soma5 == 12:
+                    dinheiro += quantoaposta4*30
+                    print("Parabéns!! Você ganhou 30 vezes o que apostou!")
+                    ficar == True
+                else:
+                    dinheiro -= quantoaposta4
+                    print("Sinto muito, você perdeu")
+                    ficar == True
 
         else:
             print("Resposta inválida. Da próxima vez digite Pass Line Bet/Field/Any Craps/Twelve")
