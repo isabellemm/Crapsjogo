@@ -1,19 +1,99 @@
 import random
+import time
 import math
-i = 5
+dinheiro = 1000
 ficar = True
+ficar2 = True
 while ficar == True:
+    print("Você tem {0} dinheiros".format(dinheiro))
+    time.sleep(1)
     continuar = input("Deseja apostar ou sair? ")
-    if continuar == "apostar":
-        ficar == True
+    if dinheiro <= 0: 
+        ficar = False
+        print("Sinto muito, você está sem fichas. Seu dinheiro acabou")
+    elif continuar == "apostar":
+        print("Você está na fase 'Come Out'")
+        tipoaposta = str(input("Qual tipo de aposta deseja fazer? (Pass Line Bet/Field/Any Craps/Twelve) "))
+        if tipoaposta == "Pass Line Bet":
+            quantoaposta = int(input("Quanto vc deseja apostar? "))
+            if quantoaposta <= 0 or quantoaposta > dinheiro:
+                print("Aposta inválida. Da próxima vez digite um valor maior que 0 e que você tenha dinheiro o suficiente para apostar")
+                ficar == True
+            else:
+                dado1 = random.randint(1,6)
+                dado2 = random.randint(1,6)
+                soma = dado1 + dado2
+                print(soma)
+                if soma == 7 or soma == 11:
+                    dinheiro += quantoaposta
+                    print("Parabéns! Você ganhou")
+                    ficar == True
+                elif soma == 2 or soma == 3 or soma == 12:
+                    dinheiro -= quantoaposta
+                    print("Sinto muito, você perdeu")
+                    ficar == True
+                elif soma == 4 or soma == 5 or soma == 6 or soma == 8 or soma == 9 or soma == 10:
+                    while ficar2 == True:
+                        print("Você está na fase 'Point'. O valor de Point é {0}".format(soma))
+                        dado3 = random.randint(1,6)
+                        dado4 = random.randint(1,6)
+                        soma2 = dado3 + dado4
+                        print(soma2)
+                        if soma == soma2:
+                            print("Parabéns! Você ganhou")
+                            ficar2 = False
+                            ficar == True
+                        elif soma2 == 7:
+                            dinheiro -= quantoaposta
+                            print("Sinto muito, você perdeu")
+                            ficar2 = False
+                            ficar == True
+    #não tenho certeza do valor do dinheiro
+                        else:
+                            print("Não foi dessa vez")
+                            time.sleep(2)
+                            ficar2 == True
+
+        elif tipoaposta == "Field":
+            quantoaposta2 = int(input("Quanto deseja apostar? "))
+            if quantoaposta2 <= 0 or quantoaposta2 > dinheiro:
+                print("Aposta inválida. Da próxima vez digite um valor maior que 0 e que você tenha dinheiro o suficiente para apostar")
+                ficar == True
+            else:
+                dado5 = random.randint(1,6)
+                dado6 = random.randint(1,6)
+                soma3 = dado5 + dado6
+                print(soma3)
+                if soma3 == 5 or soma3 == 6 or soma3 == 7 or soma3 == 8:
+                    dinheiro -= quantoaposta2
+                    print("Sinto muito, você perdeu")
+                    ficar == True
+    #preciso checar esse tmb
+                elif soma3 == 3 or soma3 == 4 or soma3 == 9 or soma3 == 10 or soma3 == 11:
+                    dinheiro += quantoaposta2
+                    print("Parabéns, você ganhou")
+                    ficar == True
+                elif soma3 == 2:
+                    dinheiro += quantoaposta2*2
+                    print("Parabéns, você ganhou em dobro!")
+                    ficar == True
+                elif soma3 == 12:
+                    dinheiro += quantoaposta*3
+                    print("Parabéns, você ganhou em triplo!")
+                    ficar == True
+
+
+
+
+
+        else:
+            print("Resposta inválida. Da próxima vez digite Pass Line Bet/Field/Any Craps/Twelve")
+            ficar == True
     elif continuar == "sair":
         ficar = False
         print("Obrigada por jogar")
-    elif i==0: 
-        ficar = False
-        print("Sinto muito, vc está sem fichas")
     else: 
         print("Responda 'apostar' ou 'sair'")
         ficar == True
-    print("Você está na fase 'Come Out'")
+    
     
